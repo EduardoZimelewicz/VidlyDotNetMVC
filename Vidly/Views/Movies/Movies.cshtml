@@ -10,15 +10,25 @@
 @if (Model.Movies.Count == 0)
 {
     <text>There is no movie yet</text>
-} 
+}
 else
 {
-    <ul>
-        @foreach (var movie in Model.Movies)
-        {
-            <li>@movie.Name</li>
-        }
-    </ul>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Movie</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.Movies)
+            {
+                <tr>
+                    <td>@movie.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 
