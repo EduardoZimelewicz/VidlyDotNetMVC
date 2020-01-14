@@ -14,11 +14,14 @@ namespace Vidly.Controllers
         [Route("Customers")]
         public IActionResult Customers()
         {
-            var customers = new List<Customer>
+
+            var customers = new List<Customer> { };
+            /*
             {
                 new Customer { Id = 0, Name = "John Smith" },
                 new Customer { Id = 1, Name = "Mary Williams" }
             };
+            */
 
             var viewModel = new CustomersViewModel
             {
@@ -31,11 +34,13 @@ namespace Vidly.Controllers
         [Route("Customers/Details/{id}")]
         public IActionResult Details(int id)
         {
-            var customers = new List<Customer>
+            var customers = new List<Customer> { };
+            /*
             {
                 new Customer { Id = 0, Name = "John Smith" },
                 new Customer { Id = 1, Name = "Mary Williams" }
             };
+            */
 
             return View(customers.ElementAt(id));
         }

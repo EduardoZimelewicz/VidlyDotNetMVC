@@ -13,12 +13,14 @@ namespace Vidly.Controllers
         [Route("Movies")]
         public IActionResult Movies()
         {
-            var movies = new List<Movie> 
+            var movies = new List<Movie> { }; 
+            /*
             { 
                 new Movie { Name = "Shrek" },
                 new Movie { Name = "Wall-e" }
             };
-
+            */
+            
             var viewModel = new MoviesViewModel
             {
                 Movies = movies
