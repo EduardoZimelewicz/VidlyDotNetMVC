@@ -9,9 +9,9 @@
 
 <ul>
     <li>Membership Type: @Model.MembershipType.Name</li>
-    @if (Model.Date.HasValue)
+    @if (Model.DateOfBirth.HasValue)
     {
-        <li>Date Of Birth: @Html.DisplayFor(m => m.Date)</li>
+        <li>Date Of Birth: @Html.DisplayFor(m => m.DateOfBirth)</li>
     }
 </ul>
 

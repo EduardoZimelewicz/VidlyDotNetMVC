@@ -44,6 +44,7 @@ namespace Vidly.Controllers
 
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
             
@@ -54,6 +55,17 @@ namespace Vidly.Controllers
         [Route("Customers/Save")]
         public IActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if(customer.Id == 0)
                 _context.Customers.Add(customer);
             else
@@ -61,7 +73,7 @@ namespace Vidly.Controllers
                 var existingCustomer = _context.Customers.Single(c => c.Id == customer.Id);
 
                 existingCustomer.Name = customer.Name;
-                existingCustomer.Date = customer.Date;
+                existingCustomer.DateOfBirth = customer.DateOfBirth;
                 existingCustomer.MembershipTypeId = customer.MembershipTypeId;
                 existingCustomer.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
