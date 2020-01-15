@@ -14,6 +14,7 @@ namespace Vidly.Models
         [StringLength(255)]
         public String Name { get; set; }
 
+        [Display(Name = "Date of birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? Date { get; set; }

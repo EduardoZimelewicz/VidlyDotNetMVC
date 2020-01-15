@@ -37,6 +37,12 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [Route("Customers/New")]
+        public IActionResult New()
+        {
+            return View();
+        }
+
         [Route("Customers/Details/{id}")]
         public IActionResult Details(int id)
         {
