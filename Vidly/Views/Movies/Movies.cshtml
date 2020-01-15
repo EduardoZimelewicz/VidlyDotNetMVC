@@ -7,6 +7,15 @@
 
 <h1>Movies</h1>
 
+<script runat="server">
+
+</script>
+
+<input type="button" class="btn btn-primary" 
+       value= "New Movie" 
+       onclick="location.href='@Url.Action("New","Movies")'"/>
+
+
 @if (Model.Movies.Count == 0)
 {
     <text>There is no movie yet</text>
@@ -14,7 +23,7 @@
 else
 {
 
-    <table class="table table-bordered table-hover">
+    <table style="margin-top:10px" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Movie</th>
@@ -25,7 +34,7 @@ else
             @foreach (var movie in Model.Movies)
             {
             <tr>
-                <td>@Html.ActionLink(@movie.Name, "Details", "Movies", new { id = movie.Id }) </td>
+                <td>@Html.ActionLink(@movie.Name, "Edit", "Movies", new { id = movie.Id }) </td>
                 <td>@movie.Genre.Name</td>
             </tr>
             }

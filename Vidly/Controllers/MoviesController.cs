@@ -37,6 +37,57 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [Route("Movies/New")]
+        public IActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        [Route("Movies/Save")]
+        public IActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+                _context.Movies.Add(movie);
+            else
+            {
+                var existingMovie = _context.Movies.Single(c => c.Id == movie.Id);
+
+                existingMovie.Name = movie.Name;
+                existingMovie.GenreId = movie.GenreId;
+                existingMovie.ReleaseDate = movie.ReleaseDate;
+                existingMovie.NumberInStock = movie.NumberInStock;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        [Route("Movies/Edit")]
+        public IActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+                return NotFound();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
         [Route("Movies/Details/{id}")]
         public IActionResult Details(int id)
         {
