@@ -52,6 +52,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Customers/Save")]
         public IActionResult Save(Customer customer)
         {
@@ -62,6 +63,8 @@ namespace Vidly.Controllers
                     Customer = customer,
                     MembershipTypes = _context.MembershipTypes.ToList()
                 };
+
+                ModelState.AddModelError(string.Empty, "Please fix the below errors");
 
                 return View("CustomerForm", viewModel);
             }
@@ -80,7 +83,7 @@ namespace Vidly.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+            return RedirectToAction("", "Customers");
         }
 
         [Route("Customers/Edit")]
