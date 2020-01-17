@@ -86,7 +86,7 @@ namespace Vidly.Controllers
             return RedirectToAction("", "Customers");
         }
 
-        [Route("Customers/Edit")]
+        [Route("Customers/Edit/{id}")]
         public IActionResult Edit(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);

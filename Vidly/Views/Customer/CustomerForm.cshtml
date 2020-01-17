@@ -26,7 +26,7 @@
         @Html.LabelFor(c => c.Customer.DateOfBirth)
         @Html.TextBoxFor(c => c.Customer.DateOfBirth, 
             "{0:dd/MM/yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Customer.DateOfBirth)
+        @Html.ValidationMessageFor(c => c.Customer.DateOfBirth)
     </div>
     <div class="checkbox">
         @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribe to Newsletter

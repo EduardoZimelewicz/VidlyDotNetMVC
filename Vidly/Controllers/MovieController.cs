@@ -44,6 +44,7 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
             };
 
@@ -69,7 +70,11 @@ namespace Vidly.Controllers
             }
 
             if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
+            }
+                
             else
             {
                 var existingMovie = _context.Movies.Single(c => c.Id == movie.Id);
@@ -85,7 +90,7 @@ namespace Vidly.Controllers
             return RedirectToAction("", "Movies");
         }
 
-        [Route("Movies/Edit")]
+        [Route("Movies/Edit/{id}")]
         public IActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
